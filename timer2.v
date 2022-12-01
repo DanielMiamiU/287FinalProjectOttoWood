@@ -1,5 +1,5 @@
 `timescale 1 ps / 1 ps
-module timer2(input clk, rst, output reg done, output [6:0]seg7_lsb, output [6:0]seg7_msb, output reg [7:0]t);
+module timer2(input clk, rst, en, output reg done, output reg [7:0]t);
 reg [31:0]tim;
 
 reg [2:0]S; reg [2:0]NS;
@@ -11,7 +11,6 @@ parameter start = 3'd0,
 			error = 3'hF;
 			
 			
-two_decimal_values seg(t, seg7_lsb, seg7_msb);
 
 always @(posedge clk or negedge rst) begin
 
@@ -26,7 +25,8 @@ always @(posedge clk or negedge rst) begin
 end
 always @(*) begin
 	case (S)
-		start: NS <= check;
+		start: begin if (en == 1'b0) NS <= start;
+		else NS <= check; end
 		check: if (t > 8'd0) NS <= timer;
 				else NS <= exit;
 				
