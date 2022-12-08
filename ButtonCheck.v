@@ -1,4 +1,4 @@
-module ButtonCheck(input clk, rst, en, input [2:0]val, input [7:0] click, output reg done, output reg correct);
+module ButtonCheck(input clk, rst, en, input [2:0]val, input [7:0] click, output reg done, output reg [7:0]correct);
 
 reg [2:0] S; reg [2:0] NS;
 parameter start = 3'd0,
@@ -73,9 +73,9 @@ always @(posedge clk or negedge rst) begin
 		case (S) 
 			start: begin
 			done = 1'b0; 
-			correct = 1'b0; end
-			right: begin correct = 1'b1; end
-			exit: begin done = 1'b1; correct = 1'b0; end
+			 end
+			right: begin correct = correct +  8'b1; end
+			exit: begin done = 1'b1;  end
 		endcase
 	end
 	

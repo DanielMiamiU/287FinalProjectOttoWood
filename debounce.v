@@ -7,6 +7,7 @@ module debounce(
     );
     
     reg r1, r2, r3;
+
     
     always @(posedge clk) begin
         r1 <= btn_in;

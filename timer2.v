@@ -41,13 +41,13 @@ end
 always @(posedge clk or negedge rst) begin
 
 if (rst == 1'b0) begin
-	t = 8'd60;
+	t = 8'd30;
 			tim = 32'd0; 
 			done = 0;
 end else begin
 	case (S) 
 		start: begin
-			t = 8'd60;
+			t = 8'd30;
 			tim = 32'd0; 
 			done = 0; end
 			
