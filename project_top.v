@@ -87,7 +87,7 @@ module project_top(clk, rst, data, latch, nes_clk, timerseg1, timerseg0, pointse
 			s3: begin if (donetime == 1'b1) ns<= exit;
 				else if (checkdone == 1'b1) ns <= s4; 
 				else ns<= s3; end
-			s4: begin if (counter < 32'd2500000) ns <= s4;
+			s4: begin if (counter < 32'd5000000) ns <= s4;
 			else ns <= s1; end
 			exit: ns <= exit;
 			
